@@ -36,6 +36,7 @@ async function ReadFile(file_name) {
 
 // Reformat string for HTML.
 function Escape(string) {
+  console.log(string);
   return [
     ["&", "&amp;"],
     [" ", "&nbsp;"],
@@ -60,22 +61,16 @@ async function CollectTypeProfile(source) {
     await session.postAsync('Runtime.enable');
     await session.postAsync('Profiler.enable');
     await session.postAsync('Profiler.startTypeProfile');
-    console.log("Waiting for TP");
     // Compile script.
     let { scriptId } = await session.postAsync('Runtime.compileScript', {
       expression: source,
       sourceURL: "test",
       persistScript: true
     });
-    // Collect console log during execution.
-    // session.on('Runtime.consoleAPICalled',
-    // message => messages.push(message));
     // Execute script.
     await session.postAsync('Runtime.runScript', { scriptId });
-    // await session.postAsync('HeapProfiler.collectGarbage');
     let { result } = await session.postAsync('Profiler.takeTypeProfile');
-    // console.log(result);
-    [{ entries: typeProfile }] = result.filter(x => x.scriptId == scriptId);
+    [{ entries: typeProfile }] = result.filter(x => x.scriptId == scriptId);   
   } finally {
     // Close session and return.
     session.disconnect();
@@ -118,13 +113,13 @@ async function Server(request, response) {
     try {
       let post = await GetPostBody(request);
       script = post.script;
-      //console.log(script);
       let typeProfile = await CollectTypeProfile(script);
-      console.log("Type Profile result:");
-      console.log(typeProfile);
       result = MarkUpCode(typeProfile, script);
     } catch (e) {
+      console.log(e);
       message_log = Escape(e.toString());
+      console.log(message_log);
+      console.log("caught something")
     }
   } else {
     // Use example file.
