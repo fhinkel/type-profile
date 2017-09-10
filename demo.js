@@ -95,7 +95,7 @@ function MarkUpCode(entries, source) {
   return source;
 
   function typeAnnotation(types) {
-    return `/*${types.map(t => t.name).join(', ')}*/`;
+    return `<b>/*${types.map(t => t.name).join(', ')}*/</b>`;
   }
 }
 
