@@ -13,6 +13,5 @@
   foo(1.5);
   foo("some string");
   foo(new Rectangle());
-
 })();
 // Return type of the script itself.
