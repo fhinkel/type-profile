@@ -119,7 +119,6 @@ async function Server(request, response) {
       console.log(e);
       message_log = Escape(e.toString());
       console.log(message_log);
-      console.log("caught something")
     }
   } else {
     // Use example file.
