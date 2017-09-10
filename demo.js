@@ -123,10 +123,6 @@ async function Server(request, response) {
       console.log("Type Profile result:");
       console.log(typeProfile);
       result = MarkUpCode(typeProfile, script);
-      for (let message of messages) {
-        message_log += `console.${message.params.type}: `;
-        message_log += `${message.params.args[0].value}<br/>`;
-      }
     } catch (e) {
       message_log = Escape(e.toString());
     }
