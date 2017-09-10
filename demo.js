@@ -53,14 +53,14 @@ function Escape(string) {
 async function CollectTypeProfile(source) {
   // Open a new inspector session.
   const session = new inspector.Session();
-  let messages = [];
-  let coverage = undefined;
+  let typeProfile = "";
   try {
     session.connect();
     // Enable relevant inspector domains.
     await session.postAsync('Runtime.enable');
     await session.postAsync('Profiler.enable');
     await session.postAsync('Profiler.startTypeProfile');
+    console.log("Waiting for TP");
     // Compile script.
     let { scriptId } = await session.postAsync('Runtime.compileScript', {
       expression: source,
@@ -68,32 +68,22 @@ async function CollectTypeProfile(source) {
       persistScript: true
     });
     // Collect console log during execution.
-
-    session.on('Runtime.consoleAPICalled',
-      message => messages.push(message));
+    // session.on('Runtime.consoleAPICalled',
+    // message => messages.push(message));
     // Execute script.
     await session.postAsync('Runtime.runScript', { scriptId });
-    await session.postAsync('HeapProfiler.collectGarbage');
-    // Collect and filter coverage result.
+    // await session.postAsync('HeapProfiler.collectGarbage');
     let { result } = await session.postAsync('Profiler.takeTypeProfile');
-    // [{ functions: coverage }] = result.filter(x => x.scriptId == scriptId);
+    // console.log(result);
+    [{ entries: typeProfile }] = result.filter(x => x.scriptId == scriptId);
   } finally {
     // Close session and return.
     session.disconnect();
   }
-  return result;
+  return typeProfile;
 }
 
-function MarkUpCode(typeProfile, source) {
-
-  let entries = typeProfile.entries;
-  if (entries === undefined) {
-    if (typeProfile.message) {
-      return typeProfile.message;
-    }
-    return "Something wrong here: " + typeProfile;
-  }
-  
+function MarkUpCode(entries, source) {
   // Sort in reverse order so we can replace entries without invalidating
   // the other offsets.
   entries = entries.sort((a, b) => b.offset - a.offset);
@@ -128,9 +118,10 @@ async function Server(request, response) {
     try {
       let post = await GetPostBody(request);
       script = post.script;
-      count = post.count === "yes";
-      detailed = post.detailed === "yes";
+      //console.log(script);
       let typeProfile = await CollectTypeProfile(script);
+      console.log("Type Profile result:");
+      console.log(typeProfile);
       result = MarkUpCode(typeProfile, script);
       for (let message of messages) {
         message_log += `console.${message.params.type}: `;
