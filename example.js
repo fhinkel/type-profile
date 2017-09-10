@@ -1,7 +1,7 @@
 (function() {
   function foo(x) {
     if (x < 2) {
-      return 1;
+      return 42;
     }
     return "What are the return types of foo?";
   }
@@ -15,5 +15,4 @@
   foo(new Rectangle());
 
 })();
-
-
+// Return type of the script itself.
