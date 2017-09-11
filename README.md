@@ -12,6 +12,6 @@ Run `node demo.js`, then open [localhost:8080](http://localhost:8080).
 Compare the runtime type information with your TypeScript or Flow annotations. Or use 
 them to find bugs and performance issues. 
 
-For technical details on type profile implementation in V8, see [https://chromium-review.googlesource.com/c/v8/v8/+/508588](https://chromium-review.googlesource.com/c/v8/v8/+/508588).
+For technical details on type profile implementation in V8, see [https://chromium-review.googlesource.com/c/v8/v8/+/508588](https://chromium-review.googlesource.com/c/v8/v8/+/508588) and the [Design Doc](https://docs.google.com/document/d/1JY7pUCAk8gegyi6UkIdln6j_AeJqQucZg92advaMJY4/edit?usp=sharing).
 
 *Demo based on [@hashseed's](https://github.com/hashseed) demo for [code coverage](https://github.com/hashseed/node-coverage-demo).*
