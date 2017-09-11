@@ -5,7 +5,7 @@ Collect runtime type information 😻 of your JavaScript code.
 
 Run `node demo.js`, then open [localhost:8080](http://localhost:8080). 
 
-*Note: currently needs Node with V8 [tip-op-tree](https://github.com/v8/node).* 
+*Note: currently needs Node with V8 [tip-of-tree](https://github.com/v8/node).* 
 
 ![Image of Demo](https://raw.githubusercontent.com/fhinkel/type-profile/master/images/demo.png)
 
