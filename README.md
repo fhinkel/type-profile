@@ -3,6 +3,12 @@
 
 Collect runtime type information 😻 of your JavaScript code.
 
+This is a demo how you could use V8's new type information feature.
+
+V8 can now collect type information at runtime. V8 is Google’s open source JavaScript engine. Chrome, Node.js, and many other applications use V8. This type profiler is built into the engine, the information is not statically inferred.
+
+The [V8 inspector protocol](https://chromedevtools.github.io/devtools-protocol/v8/Profiler/#method-startTypeProfile) provides access to the type information. Since the inspector is available in Node (see [Node Documentation](https://nodejs.org/dist/latest-v8.x/docs/api/inspector.html)), it's easy to write modules that utilize type information. This repo is a very simple demo of this.
+
 Run `node demo.js`, then open [localhost:8080](http://localhost:8080). 
 
 *Note: currently needs Node with V8 [tip-of-tree](https://github.com/v8/node).* 
