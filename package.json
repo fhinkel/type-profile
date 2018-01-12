@@ -1,0 +1,26 @@
+{
+  "name": "type-profile",
+  "version": "1.0.0",
+  "description": "Collect runtime type information 😻 of your JavaScript code.",
+  "main": "demo.js",
+  "scripts": {
+	"start": "node demo.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fhinkel/type-profile.git"
+  },
+  "keywords": [
+    "nodejs",
+    "typing",
+    "typeprofile",
+    "typescript"
+  ],
+  "author": "Franziska Hinkelmann",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fhinkel/type-profile/issues"
+  },
+  "homepage": "https://github.com/fhinkel/type-profile#readme"
+}
