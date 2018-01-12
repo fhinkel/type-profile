@@ -139,4 +139,5 @@ async function Server(request, response) {
 }
 
 http.createServer(Server).listen(8080);
+console.log("Listening on localhost:8080");
 
