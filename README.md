@@ -11,7 +11,7 @@ The [V8 inspector protocol](https://chromedevtools.github.io/devtools-protocol/v
 
 Run `node demo.js`, then open [localhost:8080](http://localhost:8080). 
 
-*Note: currently needs Node with V8 [tip-of-tree](https://github.com/v8/node).* 
+*Note: currently needs Node master, TypeProfile is not in 9.4. You can build from source or download a [nightly build](https://nodejs.org/download/nightly/)* 
 
 ![Image of Demo](https://raw.githubusercontent.com/fhinkel/type-profile/master/images/demo.png)
 
